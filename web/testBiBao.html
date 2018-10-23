@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>闭包学习</title>
+    <meta content="text/html">
+</head>
+<body>
+
+</body>
+<script>
+    // function test() {
+    //     var a = 1;
+    //     function fun() {
+    //         alert(a);
+    //     }
+    // }
+    //
+    // var fun2 = test();
+    // fun2;
+    (function () {
+        var name = "wangyu";
+        Person = function (val) {
+            name = val;
+        }
+        Person.prototype.setName = function (val) {
+            name = val;
+        }
+        Person.prototype.getName = function () {
+            return name;
+        }
+    })();
+    // var p1 = new Person("wangmin");
+    // p1.setName("wps")
+    // alert(p1.getName())
+
+    var aaa = (function () {
+        var a = 1;
+        function bbb() {
+            a++;
+            alert(a);
+        }
+        function ccc() {
+            a++;
+            alert(a);
+        }
+        return {
+            b:bbb,
+            c:ccc
+        }
+    })();
+
+    // alert(aaa.b());
+    // alert(aaa.c());
+
+    function a() {
+        var name = 'dov';
+
+    return function () {
+        return name;
+    }
+    }
+
+    var b = a();
+    var r = b();
+    console.log("r:",r)
+
+    function fn() {
+        var num = 3;
+        return function () {
+            var n = 0;
+            console.log(++n);
+            console.log(++num);
+        }
+    }
+
+    var fn1=fn();
+    fn1();
+    fn1();
+</script>
+</html>

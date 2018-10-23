@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>style</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <style type="text/css">
+        .aver{
+            width: 320px;
+            height: 200px;
+            text-align: center;
+        }
+        .active{
+            background-color: aquamarine;
+        }
+        .text-danger{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" class="aver" v-bind:class="classObject">vue的class与style</div>
+    <div id="app2" class="aver" v-bind:class="[activeClass,errorClass]">class数组语法</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    // new Vue({
+    //     el:'#app',
+    //     data:{
+    //         classObject:{
+    //             active:true,
+    //             'text-danger':false
+    //         }
+    //     }
+    // })
+
+    // new Vue({
+    //     el:'#app',
+    //     data:{
+    //         isActive:true,
+    //         error:null
+    //     },
+    //     computed:{
+    //         classObject:function () {
+    //             return {
+    //                 active:this.isActive && this.error,
+    //                 'text-danger':this.error && this.error.type === 'fatal'
+    //             }
+    //         }
+    //     }
+    // })
+
+    new Vue({
+        el:'#app2',
+        data:{
+            activeClass:'active',
+            errorClass:'text-danger'
+        }
+    })
+</script>
+</html>

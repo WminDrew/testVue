@@ -1,0 +1,18 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>测试 eval()</title>
+</head>
+<body>
+
+</body>
+<script>
+    var str = '{"friends":[{"name":"梅梅","age":29,"sex":"女"},' +
+        '{"name":"李华","age":18,"sex":"男"}]' +
+        '}';
+    var s= eval('('+str+')');
+    // console.log("str:"+str)
+    console.log(s.friends[0]);
+</script>
+</html>

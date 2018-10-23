@@ -1,0 +1,34 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>test Template</title>
+    <meta charset="UTF-8">
+
+</head>
+<body>
+<div id="content"></div>
+<script id="test" type="text/html">
+{{if isAdmin}}
+    <h1>{{title}}</h1>
+    <ul>
+        {{each list as value i}}
+        <li>索引{{i+1}} : {{value}}</li>
+        {{/each}}
+    </ul>
+    {{/if}}
+</script>
+<script src="static/template.js"></script>
+<script>
+    var data = {
+        title:'基本粒子',
+        isAdmin:true,
+        list:['文艺','博客','摄影','电影','民谣','旅行','吉他']
+    };
+    var html = template('test',data);
+    document.getElementById("content").innerHTML = html;
+</script>
+</body>
+
+
+</html>

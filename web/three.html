@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>数据与语法</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+</head>
+<body>
+    <div id="app">
+        <p>{{ foo }}</p>
+        <button v-on:click="foo = 'bar'">Change it</button>
+    </div>
+
+    <div id="example">
+        <p>Original message:"{{message}}"</p>
+        <p>Computed reversed message:"{{reversedMessage}}"</p>
+        <p>To upper case:"{{upperMessage}}"</p>
+        <p>To Lower case:"{{lowerMessage}}"</p>
+        <p>Function reversed message:"{{reversedMessageFun()}}"</p>
+        <input v-model="message">
+    </div>
+
+    <div id="demo">{{fullName}}</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var obj = {
+        foo:'bar'
+    }
+    Object.freeze(obj)
+
+    var vm = new Vue({
+        el:'#app',
+        data:obj,
+        created:function () {
+            console.log('a is: '+this.foo)
+        }
+    })
+    // this 上下文指向调用它的 Vue 实例。
+    // console.log(vm.$data == obj)
+
+    var vm2= new Vue({
+        el:'#example',
+        data:{
+            message:'Hello'
+        },
+        computed:{ //计算属性:计算属性是基于它们的依赖进行缓存的，只有在相关依赖发生改变时它们才会重新求值
+            reversedMessage:function () {
+                return this.message.split('').reverse().join('')
+            },
+            upperMessage:function () {
+                return this.message.toUpperCase()
+            },
+            lowerMessage:function () {
+                return this.message.toLowerCase()
+            }
+        },
+        methods:{ //方法没有缓存，调用方法将总会再次执行函数
+            reversedMessageFun:function () {
+                return this.message.split('').reverse().join('')
+            }
+        }
+    })
+
+    //使用命令式的watch回调
+    // new Vue({
+    //     el:'#demo',
+    //     data:{
+    //         firstNmae:'Foo',
+    //         lastName:'Bar',
+    //         fullName:'Foo Bar'
+    //     },
+    //     watch:{
+    //         firstName:function (val) {
+    //             this.fullName = val + ' ' + this.lastName
+    //         },
+    //         lastName:function (val) {
+    //             this.fullName = this.firstName + ' '+val
+    //         }
+    //     }
+    // })
+    //使用计算属性
+    // new Vue({
+    //     el:'#demo',
+    //     data:{
+    //         firstName:'Foo',
+    //         lastName:'Bar'
+    //     },
+    //     computed:{
+    //         fullName:function () {
+    //             return this.firstName + ' '+this.lastName
+    //         }
+    //     }
+    // })
+    var demo = new Vue({
+        el:'#demo',
+        data:{
+            firstName:'bar',
+            lastName:'foo'
+        },
+        computed:{
+            fullName:{
+                get:function () {
+                    return this.firstName + ' ' + this.lastName
+                },
+                set:function (newValue) {
+                    var names = newValue.split(' ')
+                    this.firstName = names[0]
+                    this.lastName = names[names.length - 1]
+                }
+            }
+        }
+    })
+</script>
+</html>

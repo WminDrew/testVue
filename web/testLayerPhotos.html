@@ -1,0 +1,158 @@
+<!--<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"-->
+        <!--"http://www.w3.org/TR/html4/loose.dtd">-->
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <title>LayerPhotos</title>
+    <meta  http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!--<link href="static/layer/skin/layer.css">-->
+    <link rel="stylesheet" href="static/Viewer/css/viewer.min.css">
+    <style type="text/css">
+        * { margin: 0; padding: 0;}
+        #jq22 { width: 700px; margin: 0 auto; font-size: 0;}
+        #jq22 li { display: inline-block; width: 32%; margin-left: 1%; padding-top: 1%;}
+        #jq22 li img { width: 100px;height: 100px}
+
+        .viewer-toolbar>.viewer-play{
+             display: none;
+        }
+        .viewer-toolbar>.viewer-one-to-one{
+            display: none;
+        }
+        .viewer-toolbar>.viewer-reset{
+            display: none;
+        }
+        .viewer-toolbar>.viewer-rotate-left{
+            display: none;
+        }
+        .viewer-toolbar {
+            width: 260px;
+            margin: 0 auto 5px;
+            padding: 3px 0;
+        }
+        .viewer-toolbar>li:before {
+            margin: 13px;
+        }
+        .viewer-toolbar>li {
+            float: left;
+            width: 48px;
+            height: 48px;
+            cursor: pointer;
+            border-radius: 50%;
+            background-color: #000;
+            background-color: rgba(0,0,0,.5);
+        }
+    </style>
+</head>
+<body>
+<div id="layer-photos-demo" class="layer-photos-demo">
+    <img src="static/image/timg.jpg" alt="科比1" style="width: 100px;height: 100px">
+    <img src="static/image/timg (1).jpg" alt="科比2" style="width: 100px;height: 100px">
+    <img src="static/image/timg (2).jpg" alt="科比3" style="width: 100px;height: 100px">
+    <img src="static/image/timg (3).jpg" alt="科比4" style="width: 100px;height: 100px">
+    <img src="static/image/timg (4).jpg" alt="科比5" style="width: 100px;height: 100px">
+</div>
+
+<!--<ul id="jq22">-->
+    <!--<li><img data-original="static/Viewer/img/tibet-1.jpg" src="static/Viewer/img/thumbnails/tibet-1.jpg" alt="图片1"></li>-->
+    <!--<li><img data-original="static/Viewer/img/tibet-2.jpg" src="static/Viewer/img/thumbnails/tibet-2.jpg" alt="图片2"></li>-->
+    <!--<li><img data-original="static/Viewer/img/tibet-3.jpg" src="static/Viewer/img/thumbnails/tibet-3.jpg" alt="图片3"></li>-->
+    <!--<li><img data-original="static/Viewer/img/tibet-4.jpg" src="static/Viewer/img/thumbnails/tibet-4.jpg" alt="图片4"></li>-->
+    <!--<li><img data-original="static/Viewer/img/tibet-5.jpg" src="static/Viewer/img/thumbnails/tibet-5.jpg" alt="图片5"></li>-->
+    <!--<li><img data-original="static/Viewer/img/tibet-6.jpg" src="static/Viewer/img/thumbnails/tibet-6.jpg" alt="图片6"></li>-->
+<!--</ul>-->
+
+<ul id="jq22">
+    <li><img  src="static/Viewer/img/tibet-1.jpg" alt="图片1"></li>
+    <li><img  src="static/Viewer/img/tibet-2.jpg" alt="图片2"></li>
+    <li><img  src="static/Viewer/img/tibet-3.jpg" alt="图片3"></li>
+    <li><img  src="static/Viewer/img/tibet-4.jpg" alt="图片4"></li>
+    <li><img  src="static/Viewer/img/tibet-5.jpg" alt="图片5"></li>
+    <li><img  src="static/Viewer/img/tibet-6.jpg" alt="图片6"></li>
+</ul>
+
+</body>
+<!--<script type="text/javascript" src="static/jquery-1.10.2.js"></script>-->
+<!--<script type="text/javascript" src="static/layer/layer.js"></script>-->
+<script type="text/javascript" src="static/Viewer/js/jquery.min.js"></script>
+<script type="text/javascript" src="static/Viewer/js/viewer.min.js"></script>
+<!--<script type="text/javascript" src="static/Viewer/js/viewer-jquery.min.js"></script>-->
+<script>
+
+    $(function () {
+        var jsonData;
+        jsonData = {
+            "title": "科比图片", //相册标题
+            "id": 123, //相册id
+            "start": 0, //初始显示的图片序号，默认0
+            "data": [   //相册包含的图片，数组格式
+                {
+                    "alt": "科比1",
+                    "pid": 1, //图片id
+                    "src": "static/image/timg.jpg", //原图地址
+                    "thumb": "" //缩略图地址
+                },{
+                    "alt": "科比2",
+                    "pid": 2, //图片id
+                    "src": "static/image/timg (1).jpg", //原图地址
+                    "thumb": "" //缩略图地址
+                },{
+                    "alt": "科比3",
+                    "pid": 3, //图片id
+                    "src": "static/image/timg (2).jpg", //原图地址
+                    "thumb": "" //缩略图地址
+                },{
+                    "alt": "科比4",
+                    "pid": 4, //图片id
+                    "src": "static/image/timg (3).jpg", //原图地址
+                    "thumb": "" //缩略图地址
+                },{
+                    "alt": "科比5",
+                    "pid": 5, //图片id
+                    "src": "static/image/timg (4).jpg", //原图地址
+                    "thumb": "" //缩略图地址
+                }
+            ]
+        }
+
+        var win_height = $(window).height();
+        var win_width = $(window).width();
+        console.log(win_height,win_width);
+
+        // $('img').on('click',function () {
+        //     layer.photos({
+        //         photos: '#layer-photos-demo',
+        //         anim: 5, //0-6的选择，指定弹出图片动画类型，默认随机（请注意，3.0之前的版本用shift参数）
+        //         tab: function(pic, layero){ //切换的时候调用
+        //             console.log(pic) //当前图片的一些信息
+        //         },
+        //         closeBtn:1,
+        //         offset:'100px',
+        //         shadeClose:true,
+        //         area:[win_width,win_height],
+        //     });
+        // })
+        // $('#jq22').viewer({
+        //     url: 'src',
+        //     scalable:false,
+        //     fullscreen:false,
+        //     rotatable:true,
+        //
+        // });
+
+        // $('#layer-photos-demo').viewer({
+        //     url: 'src',
+        //     scalable:false,
+        //     fullscreen:false
+        // });
+    })
+
+    var viewer = new Viewer(document.getElementById('jq22'), {
+        url: 'src',
+        scalable:false,//是否可以翻转
+        fullscreen:false,//是否支持全屏播放
+        zoomRatio:0,//鼠标滚动时候的缩放比例
+        navbar:true//是否展开缩略图
+    });
+</script>
+</html>
